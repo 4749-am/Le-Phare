@@ -2,7 +2,9 @@
   <header class="futuristic-header">
     <div class="logo">Le Phare</div>
     <nav>
-      <button class="btn-cta">Connexion / Inscription</button>
+      <router-link to="/signin" class="btn-cta">
+        Connexion / Inscription
+      </router-link>
     </nav>
   </header>
 </template>

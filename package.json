@@ -1,32 +1,24 @@
 {
   "name": "le-phare",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "engines": {
-    "node": "^20.19.0 || >=22.12.0"
-  },
+  "version": "1.0.0",
+  "description": "Une lumière qui vous guide dans l'océan de l'apprentissage en ligne.",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+  "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run start --prefix backend\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4749-am/Le-Phare.git"
   },
-  "dependencies": {
-    "pinia": "^3.0.3",
-    "vue": "^3.5.18",
-    "vue-router": "^4.5.1"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/4749-am/Le-Phare/issues"
   },
+  "homepage": "https://github.com/4749-am/Le-Phare#readme",
   "devDependencies": {
-    "@eslint/js": "^9.31.0",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vue/eslint-config-prettier": "^10.2.0",
-    "eslint": "^9.31.0",
-    "eslint-plugin-vue": "~10.3.0",
-    "globals": "^16.3.0",
-    "prettier": "3.6.2",
-    "vite": "^7.0.6",
-    "vite-plugin-vue-devtools": "^8.0.0"
+    "concurrently": "^9.2.0"
   }
 }
