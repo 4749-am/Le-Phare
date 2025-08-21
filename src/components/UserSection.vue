@@ -3,7 +3,7 @@
     <div class="user-content">
       <h1>Tracez votre chemin vers l'expertise</h1>
       <p>Votre guide pour maîtriser n'importe quelle compétence...</p>
-      <a href="#" class="btn-cta">Commencez votre parcours</a>
+      <button class="btn-cta">Commencez votre parcours</button>
     </div>
   </main>
 </template>
@@ -47,19 +47,20 @@ export default {
 .btn-cta {
   background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
   padding: 8px 16px;
+  border: none;
   border-radius: 5px;
   color: var(--text-light);
   text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1em;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
+  transition: box-shadow 0.3s ease;
   white-space: nowrap;
 }
 
 .btn-cta:hover {
   box-shadow: var(--button-shadow);
-  transform: translateY(-2px);
+  cursor: pointer;
 }
 
 @media (min-width: 1024px) {

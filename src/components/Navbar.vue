@@ -2,7 +2,7 @@
   <header class="futuristic-header">
     <div class="logo">Le Phare</div>
     <nav>
-      <a href="#" class="btn-cta">Connexion / Inscription</a>
+      <button class="btn-cta">Connexion / Inscription</button>
     </nav>
   </header>
 </template>
@@ -18,7 +18,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px;
   background-color: rgba(13, 13, 26, 0.7);
   backdrop-filter: blur(10px);
   position: fixed;
@@ -38,19 +38,19 @@ export default {
 .btn-cta {
   background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
   padding: 8px 16px;
+  border: none;
   border-radius: 5px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05em;
   color: var(--text-light);
   text-decoration: none;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
-  white-space: nowrap;
+  transition: box-shadow 0.3s ease;
 }
 
 .btn-cta:hover {
   box-shadow: var(--button-shadow);
-  transform: translateY(-2px);
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
