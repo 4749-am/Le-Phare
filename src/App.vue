@@ -1,8 +1,24 @@
-<script setup></script>
-
 <template>
-  <h1>Le Phare</h1>
-  <p>Une lumière qui vous guide dans l'océan de l'apprentissage en ligne.</p>
+  <div>
+    <Navbar />
+    <UserSection />
+    <FeaturesSection />
+  </div>
 </template>
 
-<style scoped></style>
+<script>
+import Navbar from './components/Navbar.vue'
+import UserSection from './components/UserSection.vue'
+import FeaturesSection from './components/FeaturesSection.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Navbar,
+    UserSection,
+    FeaturesSection,
+  },
+}
+</script>
+
+<style></style>
