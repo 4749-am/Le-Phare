@@ -1,4 +1,3 @@
-// backend/models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
@@ -15,7 +14,6 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-// Hashage du mot de passe avant l'enregistrement de l'utilisateur
 UserSchema.pre('save', async function(next) {
   if (this.isModified('password')) {
     const salt = await bcrypt.genSalt(10);
@@ -24,7 +22,6 @@ UserSchema.pre('save', async function(next) {
   next();
 });
 
-// Méthode pour comparer les mots de passe
 UserSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };

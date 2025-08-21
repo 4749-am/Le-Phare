@@ -1,37 +1,44 @@
 <template>
-  <div class="auth-container">
-    <form @submit.prevent="handleLogin" class="auth-form">
-      <h2>{{ isLoginMode ? 'Connexion' : 'Inscription' }}</h2>
-      <div class="form-group">
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" id="username" v-model="username" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" v-model="password" required>
-      </div>
-      <button type="submit" class="btn-submit">
-        {{ isLoginMode ? 'Se connecter' : 'S\'inscrire' }}
-      </button>
-      <p class="switch-mode">
-        {{ isLoginMode ? 'Pas de compte ?' : 'Vous avez déjà un compte ?' }}
-        <a href="#" @click.prevent="toggleMode">
-          {{ isLoginMode ? 'S\'inscrire' : 'Se connecter' }}
-        </a>
-      </p>
-    </form>
+  <div class="modal-overlay" @click.self="$emit('close-modal')">
+    <div class="auth-container">
+      <form @submit.prevent="handleLogin" class="auth-form">
+        <button class="close-btn" @click.prevent="$emit('close-modal')">X</button>
+        <h2>{{ isLoginMode ? 'Connexion' : 'Inscription' }}</h2>
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" id="username" v-model="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" v-model="password" required>
+        </div>
+        <button type="submit" class="btn-submit">
+          {{ isLoginMode ? 'Se connecter' : 'S\'inscrire' }}
+        </button>
+        <p class="switch-mode">
+          {{ isLoginMode ? 'Pas de compte ?' : 'Vous avez déjà un compte ?' }}
+          <a href="#" @click.prevent="toggleMode">
+            {{ isLoginMode ? 'S\'inscrire' : 'Se connecter' }}
+          </a>
+        </p>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue';
+import axios from 'axios';
+import { useAuthStore } from '../stores/auth';
 
 export default {
   name: 'SignIn',
+  emits: ['close-modal'], // Déclaration de l'événement émis
   setup() {
     const username = ref('');
     const password = ref('');
     const isLoginMode = ref(true);
+    const authStore = useAuthStore();
 
     const toggleMode = () => {
       isLoginMode.value = !isLoginMode.value;
@@ -41,28 +48,23 @@ export default {
 
     const handleLogin = async () => {
       const endpoint = isLoginMode.value ? '/api/auth/login' : '/api/auth/register';
-      const method = 'POST';
-      const body = JSON.stringify({
+      const payload = {
         username: username.value,
         password: password.value,
-      });
+      };
 
       try {
-        const response = await fetch(endpoint, {
-          method,
-          headers: { 'Content-Type': 'application/json' },
-          body,
-        });
+        const response = await axios.post(endpoint, payload);
 
-        const data = await response.json();
-
-        if (response.ok) {
-          console.log(isLoginMode.value ? 'Connexion réussie !' : 'Inscription réussie !', data);
+        if (response.status === 200 || response.status === 201) {
+          console.log(isLoginMode.value ? 'Connexion réussie !' : 'Inscription réussie !', response.data);
+          authStore.setToken(response.data.token);
+          authStore.setUser(response.data.user);
         } else {
-          console.error('Erreur :', data.message);
+          console.error('Erreur :', response.data.message);
         }
       } catch (error) {
-        console.error('Erreur réseau :', error);
+        console.error('Erreur réseau :', error.response ? error.response.data : error.message);
       }
     };
 
@@ -72,15 +74,20 @@ export default {
 </script>
 
 <style scoped>
-.auth-container {
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding-top: 80px;
+  z-index: 2000;
 }
-
-.auth-form {
+.auth-container {
+  /* Le reste du style est le même */
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 40px;
@@ -88,26 +95,27 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   max-width: 400px;
   width: 100%;
+  position: relative; /* Ajout pour positionner le bouton de fermeture */
 }
-
 .auth-form h2 {
+  /* Le reste du style est le même */
   text-align: center;
   color: var(--neon-blue);
   text-shadow: 0 0 5px var(--neon-blue);
   margin-bottom: 30px;
 }
-
 .form-group {
+  /* Le reste du style est le même */
   margin-bottom: 20px;
 }
-
 .form-group label {
+  /* Le reste du style est le même */
   display: block;
   margin-bottom: 8px;
   color: var(--text-light);
 }
-
 .form-group input {
+  /* Le reste du style est le même */
   width: 100%;
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -116,8 +124,8 @@ export default {
   color: var(--text-light);
   font-family: 'Orbitron', sans-serif;
 }
-
 .btn-submit {
+  /* Le reste du style est le même */
   width: 100%;
   background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
   padding: 12px;
@@ -130,21 +138,31 @@ export default {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   font-family: 'Orbitron', sans-serif;
 }
-
 .btn-submit:hover {
+  /* Le reste du style est le même */
   box-shadow: var(--button-shadow);
   transform: translateY(-2px);
 }
-
 .switch-mode {
+  /* Le reste du style est le même */
   text-align: center;
   margin-top: 20px;
   font-size: 0.9em;
 }
-
 .switch-mode a {
+  /* Le reste du style est le même */
   color: var(--neon-purple);
   text-decoration: none;
   font-weight: bold;
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 </style>

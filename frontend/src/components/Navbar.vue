@@ -2,9 +2,9 @@
   <header class="futuristic-header">
     <div class="logo">Le Phare</div>
     <nav>
-      <router-link to="/signin" class="btn-cta">
+      <button class="btn-cta" @click="$emit('show-modal')">
         Connexion / Inscription
-      </router-link>
+      </button>
     </nav>
   </header>
 </template>
