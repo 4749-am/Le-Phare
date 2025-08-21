@@ -33,7 +33,7 @@ import { useAuthStore } from '../stores/auth';
 
 export default {
   name: 'SignIn',
-  emits: ['close-modal'], // Déclaration de l'événement émis
+  emits: ['close-modal'],
   setup() {
     const username = ref('');
     const password = ref('');
@@ -47,6 +47,7 @@ export default {
     };
 
     const handleLogin = async () => {
+      console.log("Tentative de connexion ou d'inscription...");
       const endpoint = isLoginMode.value ? '/api/auth/login' : '/api/auth/register';
       const payload = {
         username: username.value,
@@ -87,7 +88,6 @@ export default {
   z-index: 2000;
 }
 .auth-container {
-  /* Le reste du style est le même */
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 40px;
@@ -95,27 +95,23 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   max-width: 400px;
   width: 100%;
-  position: relative; /* Ajout pour positionner le bouton de fermeture */
+  position: relative;
 }
 .auth-form h2 {
-  /* Le reste du style est le même */
   text-align: center;
   color: var(--neon-blue);
   text-shadow: 0 0 5px var(--neon-blue);
   margin-bottom: 30px;
 }
 .form-group {
-  /* Le reste du style est le même */
   margin-bottom: 20px;
 }
 .form-group label {
-  /* Le reste du style est le même */
   display: block;
   margin-bottom: 8px;
   color: var(--text-light);
 }
 .form-group input {
-  /* Le reste du style est le même */
   width: 100%;
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -125,7 +121,6 @@ export default {
   font-family: 'Orbitron', sans-serif;
 }
 .btn-submit {
-  /* Le reste du style est le même */
   width: 100%;
   background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
   padding: 12px;
@@ -139,18 +134,15 @@ export default {
   font-family: 'Orbitron', sans-serif;
 }
 .btn-submit:hover {
-  /* Le reste du style est le même */
   box-shadow: var(--button-shadow);
   transform: translateY(-2px);
 }
 .switch-mode {
-  /* Le reste du style est le même */
   text-align: center;
   margin-top: 20px;
   font-size: 0.9em;
 }
 .switch-mode a {
-  /* Le reste du style est le même */
   color: var(--neon-purple);
   text-decoration: none;
   font-weight: bold;

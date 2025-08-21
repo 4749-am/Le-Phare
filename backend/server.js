@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth'); 
 
@@ -13,6 +14,9 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('Erreur de connexion à MongoDB', err));
 
 app.use(express.json());
+console.log('Routes d\'authentification montées sur /api/auth');
+
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Serveur Express en cours !');
