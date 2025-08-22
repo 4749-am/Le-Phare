@@ -1,7 +1,7 @@
 <template>
   <div class="modal-overlay" @click.self="$emit('close-modal')">
     <div class="auth-container">
-      <form @submit.prevent="handleLogin" class="auth-form">
+      <form @submit.prevent="handleLogin" @keydown="handleKeyDown" class="auth-form">
         <button class="close-btn" @click.prevent="$emit('close-modal')">X</button>
         <h2>{{ isLoginMode ? 'Connexion' : 'Inscription' }}</h2>
         <div class="form-group">
@@ -10,7 +10,6 @@
             type="text"
             id="username"
             v-model="username"
-            @keyup.enter="handleLogin"
             required
           >
         </div>
@@ -20,7 +19,6 @@
             type="password"
             id="password"
             v-model="password"
-            @keyup.enter="handleLogin"
             required
           >
         </div>
@@ -60,7 +58,17 @@ export default {
       password.value = '';
     };
 
+    const handleKeyDown = (event) => {
+      console.log("Touche appuyée:", event.key); // Pour débugger
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleLogin();
+      }
+    };
+
     const handleLogin = async () => {
+      console.log("HandleLogin appelée !"); // Pour vérifier si la fonction est appelée
+
       // Vérifier que les champs ne sont pas vides
       if (!username.value.trim() || !password.value.trim()) {
         console.error('Veuillez remplir tous les champs');
@@ -92,7 +100,7 @@ export default {
       }
     };
 
-    return { username, password, isLoginMode, handleLogin, toggleMode };
+    return { username, password, isLoginMode, handleLogin, toggleMode, handleKeyDown };
   },
 };
 </script>
