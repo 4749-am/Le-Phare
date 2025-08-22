@@ -10,6 +10,7 @@
             type="text"
             id="username"
             v-model="username"
+            @keydown.enter="handleLogin"
             required
           >
         </div>
@@ -19,6 +20,7 @@
             type="password"
             id="password"
             v-model="password"
+            @keydown.enter="handleLogin"
             required
           >
         </div>
@@ -127,20 +129,32 @@ export default {
   max-width: 400px;
   width: 100%;
   position: relative;
+  box-sizing: border-box; /* Important pour le conteneur */
 }
+
+.auth-form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .auth-form h2 {
   text-align: center;
   color: var(--neon-blue);
   text-shadow: 0 0 5px var(--neon-blue);
   margin-bottom: 30px;
 }
+
 .form-group {
   margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 .form-group label {
   display: block;
   margin-bottom: 8px;
   color: var(--text-light);
+  width: 100%;
 }
 .form-group input {
   width: 100%;
@@ -150,7 +164,16 @@ export default {
   border-radius: 5px;
   color: var(--text-light);
   font-family: 'Orbitron', sans-serif;
+  box-sizing: border-box; /* S'assurer que padding et border sont inclus dans la largeur */
+  margin: 0; /* Retirer les marges par défaut */
+  outline: none; /* Retirer l'outline par défaut */
 }
+
+.form-group input:focus {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
 .btn-submit {
   width: 100%;
   background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
@@ -163,6 +186,9 @@ export default {
   font-size: 1em;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   font-family: 'Orbitron', sans-serif;
+  box-sizing: border-box; /* S'assurer que padding et border sont inclus dans la largeur */
+  margin: 0; /* Retirer les marges par défaut */
+  display: block; /* S'assurer que c'est un élément block */
 }
 .btn-submit:hover {
   box-shadow: var(--button-shadow);
