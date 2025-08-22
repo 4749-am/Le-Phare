@@ -6,11 +6,23 @@
         <h2>{{ isLoginMode ? 'Connexion' : 'Inscription' }}</h2>
         <div class="form-group">
           <label for="username">Nom d'utilisateur</label>
-          <input type="text" id="username" v-model="username" required>
+          <input
+            type="text"
+            id="username"
+            v-model="username"
+            @keyup.enter="handleLogin"
+            required
+          >
         </div>
         <div class="form-group">
           <label for="password">Mot de passe</label>
-          <input type="password" id="password" v-model="password" required>
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            @keyup.enter="handleLogin"
+            required
+          >
         </div>
         <button type="submit" class="btn-submit">
           {{ isLoginMode ? 'Se connecter' : 'S\'inscrire' }}
@@ -30,15 +42,17 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'SignIn',
   emits: ['close-modal'],
-  setup() {
+  setup(props, { emit }) {
     const username = ref('');
     const password = ref('');
     const isLoginMode = ref(true);
     const authStore = useAuthStore();
+    const router = useRouter();
 
     const toggleMode = () => {
       isLoginMode.value = !isLoginMode.value;
@@ -47,10 +61,16 @@ export default {
     };
 
     const handleLogin = async () => {
+      // Vérifier que les champs ne sont pas vides
+      if (!username.value.trim() || !password.value.trim()) {
+        console.error('Veuillez remplir tous les champs');
+        return;
+      }
+
       console.log("Tentative de connexion ou d'inscription...");
       const endpoint = isLoginMode.value ? '/api/auth/login' : '/api/auth/register';
       const payload = {
-        username: username.value,
+        username: username.value.trim(),
         password: password.value,
       };
 
@@ -61,6 +81,9 @@ export default {
           console.log(isLoginMode.value ? 'Connexion réussie !' : 'Inscription réussie !', response.data);
           authStore.setToken(response.data.token);
           authStore.setUser(response.data.user);
+
+          emit('close-modal');
+          router.push('/');
         } else {
           console.error('Erreur :', response.data.message);
         }

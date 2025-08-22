@@ -4,8 +4,8 @@
   "description": "Une lumière qui vous guide dans l'océan de l'apprentissage en ligne.",
   "main": "index.js",
   "scripts": {
-  "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run start --prefix backend\""
-},
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run start --prefix backend\""
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/4749-am/Le-Phare.git"
@@ -20,5 +20,8 @@
   "homepage": "https://github.com/4749-am/Le-Phare#readme",
   "devDependencies": {
     "concurrently": "^9.2.0"
+  },
+  "dependencies": {
+    "pinia-plugin-persistedstate": "^4.5.0"
   }
 }

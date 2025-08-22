@@ -2,17 +2,43 @@
   <header class="futuristic-header">
     <div class="logo">Le Phare</div>
     <nav>
-      <button class="btn-cta" @click="$emit('show-modal')">
+      <span v-if="authStore.isAuthenticated && authStore.user" class="username-display">
+        Bienvenue, {{ authStore.user.username }} !
+      </span>
+
+      <button v-if="!authStore.isAuthenticated" class="btn-cta" @click="$emit('show-modal')">
         Connexion / Inscription
+      </button>
+
+      <button v-else class="btn-cta" @click="logout">
+        Déconnexion
       </button>
     </nav>
   </header>
 </template>
 
 <script>
+import { useAuthStore } from '../stores/auth';
+import { useRouter } from 'vue-router';
+
 export default {
   name: 'NavbarSection',
-}
+  emits: ['show-modal'],
+  setup() {
+    const authStore = useAuthStore();
+    const router = useRouter();
+
+    const logout = () => {
+      authStore.clearAuth();
+      router.push('/');
+    };
+
+    return {
+      authStore,
+      logout,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -37,9 +63,17 @@ export default {
   text-shadow: 0 0 5px var(--neon-blue);
 }
 
+.username-display {
+  color: var(--text-light);
+  font-size: 1.05em;
+  font-weight: 500;
+  margin-right: 20px;
+}
+
 .btn-cta {
   background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
   padding: 8px 16px;
+  margin-right: 50px;
   border: none;
   border-radius: 5px;
   font-family: 'Orbitron', sans-serif;

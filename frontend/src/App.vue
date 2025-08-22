@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { ref } from 'vue'; // Import de 'ref'
+import { ref } from 'vue';
 import Navbar from './components/Navbar.vue';
 import UserSection from './components/UserSection.vue';
 import FeaturesSection from './components/FeaturesSection.vue';
-import SignIn from './components/SignIn.vue'; // Import du composant de la modale
+import SignIn from './components/SignIn.vue';
 
 export default {
   name: 'App',
@@ -21,7 +21,7 @@ export default {
     Navbar,
     UserSection,
     FeaturesSection,
-    SignIn, // Ajout du composant
+    SignIn,
   },
   setup() {
     const isAuthModalVisible = ref(false);
