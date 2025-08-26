@@ -16,7 +16,7 @@
       <div class="feature-item">
         <h3>Échangez avec l'équipage</h3>
         <p>
-          Rejoignez une communauté bienveillante pour partager vos créations, poser vos questions et progresser ensemble.
+          Rejoignez une communauté bienveillante pour<br>partager vos créations,<br>poser vos questions<br>et progresser ensemble.
         </p>
       </div>
     </div>
