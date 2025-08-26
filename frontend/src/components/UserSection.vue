@@ -1,8 +1,8 @@
 <template>
   <main class="user-section">
     <div class="user-content">
-      <h1>Tracez votre chemin vers l'expertise</h1>
-      <p>Votre guide pour maîtriser n'importe quelle compétence...</p>
+      <h1>Démarrez votre aventure</h1>
+      <p>Un guide simple pour découvrir et apprendre de nouvelles compétences, une étape à la fois.</p>
       <button class="btn-cta">Commencez votre parcours</button>
     </div>
   </main>
@@ -20,28 +20,26 @@ export default {
   align-items: center;
   justify-content: center;
   height: 50vh;
-  padding-top: 80px;
 }
 
 .user-content {
   text-align: center;
-  max-width: 600px;
-  padding: 20px;
+  width: 100%;
 }
 
 .user-content h1 {
   font-size: 3.5em;
   font-weight: 700;
   text-transform: uppercase;
-  line-height: 1.2;
   color: var(--neon-blue);
   text-shadow: 0 0 10px var(--neon-blue);
+  text-align: center;
 }
 
 .user-content p {
   font-size: 1.5em;
   line-height: 1.6;
-  margin: 20px 0 30px;
+  margin: 40px;
 }
 
 .btn-cta {

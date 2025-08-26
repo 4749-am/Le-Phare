@@ -11,7 +11,7 @@ const pinia = createPinia()
 app.use(pinia)
 app.use(router)
 
-// Initialiser l'authentification après avoir configuré Pinia
+// Initialiser l'authentification
 const authStore = useAuthStore()
 authStore.initAuth()
 

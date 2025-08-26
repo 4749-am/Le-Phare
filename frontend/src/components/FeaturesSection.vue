@@ -1,22 +1,22 @@
 <template>
   <section class="features-section">
-    <h2>Comment ça marche ?</h2>
+    <h2>Comment Le Phare vous guide ?</h2>
     <div class="features-grid">
       <div class="feature-item">
-        <h3>Tracez votre chemin</h3>
-        <p>Un sentier d'apprentissage structuré pour chaque compétence, du débutant à l'expert.</p>
+        <h3>Votre première balise</h3>
+        <p>Débutez votre aventure avec des parcours clairs.<br>Pas de jargon, juste des étapes simples pour commencer.</p>
       </div>
       <div class="feature-item">
-        <h3>Apprenez</h3>
+        <h3>Trouvez le bon chemin</h3>
         <p>
-          Des ressources gratuites et de qualité pour chaque étape, sélectionnées par notre
-          communauté.
+          Accédez à des ressources gratuites et vérifiées.<br>
+          Notre communauté sélectionne les meilleurs articles et tutoriels pour chaque compétence.
         </p>
       </div>
       <div class="feature-item">
-        <h3>Échangez</h3>
+        <h3>Échangez avec l'équipage</h3>
         <p>
-          Une communauté pour partager du code, obtenir des conseils et collaborer sur des projets.
+          Rejoignez une communauté bienveillante pour partager vos créations, poser vos questions et progresser ensemble.
         </p>
       </div>
     </div>
@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .features-section {
-  padding: 80px 50px;
+  padding: 0 30px 50px 30px;
   text-align: center;
 }
 
@@ -65,8 +65,12 @@ export default {
 
 .feature-item h3 {
   color: var(--neon-blue);
-  margin-top: 0;
+  margin-bottom: 10px;
   font-size: 1.3em;
   text-align: center;
+}
+
+.feature-item p {
+  line-height: 1.5;
 }
 </style>

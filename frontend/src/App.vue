@@ -82,11 +82,11 @@ body {
 
 #app {
   min-height: 100vh;
-  padding-top: 80px; /* Ajustez selon la hauteur de votre navbar */
+  padding-top: 80px;
 }
 
 .guest-content, .authenticated-content {
-  min-height: calc(100vh - 80px); /* Compense le padding-top */
+  min-height: calc(100vh - 80px);
 }
 
 .welcome-section {

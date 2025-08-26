@@ -1,10 +1,9 @@
-// routes/admin.js
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-here';
+const JWT_SECRET = process.env.JWT_SECRET || 'my_awesome_secret_key';
 
 // Middleware pour vérifier si l'utilisateur est admin
 const isAdmin = async (req, res, next) => {
