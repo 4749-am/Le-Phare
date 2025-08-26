@@ -61,6 +61,13 @@ export default {
   font-weight: 700;
   color: var(--neon-blue);
   text-shadow: 0 0 5px var(--neon-blue);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .username-display {

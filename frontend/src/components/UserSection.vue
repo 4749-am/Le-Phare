@@ -44,16 +44,9 @@ export default {
 
 .user-content p.pathway-text {
   font-weight: bold;
-  color: var(--neon-purple);
-  text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+  color: var(--text-light);
+  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
   margin-top: 30px;
-  animation: pulse 2s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
 }
 
 @media (min-width: 1024px) {

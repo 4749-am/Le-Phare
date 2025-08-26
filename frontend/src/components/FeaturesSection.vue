@@ -54,13 +54,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 25px;
   border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.feature-item:hover {
-  transform: translateY(-10px);
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
-  cursor: pointer;
 }
 
 .feature-item h3 {
