@@ -66,5 +66,6 @@ export default {
 
 .feature-item p {
   line-height: 1.5;
+  font-size: 1.2em;
 }
 </style>
