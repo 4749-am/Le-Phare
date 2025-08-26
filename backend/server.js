@@ -9,6 +9,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 9000;
 
+const adminRoutes = require('./routes/admin');
+app.use('/api/admin', adminRoutes);
+
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connecté à MongoDB'))
   .catch(err => console.error('Erreur de connexion à MongoDB', err));
