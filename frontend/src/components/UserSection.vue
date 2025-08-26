@@ -3,7 +3,7 @@
     <div class="user-content">
       <h1>Démarrez votre aventure</h1>
       <p>Un guide simple pour découvrir et apprendre de nouvelles compétences, une étape à la fois.</p>
-      <button class="btn-cta">Commencez votre parcours</button>
+      <p class="pathway-text">Pour commencer votre parcours veuillez vous inscrire ou vous connecter</p>
     </div>
   </main>
 </template>
@@ -39,26 +39,21 @@ export default {
 .user-content p {
   font-size: 1.5em;
   line-height: 1.6;
-  margin: 40px;
+  margin: 20px;
 }
 
-.btn-cta {
-  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  color: var(--text-light);
-  text-decoration: none;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.1em;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  transition: box-shadow 0.3s ease;
-  white-space: nowrap;
+.user-content p.pathway-text {
+  font-weight: bold;
+  color: var(--neon-purple);
+  text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+  margin-top: 30px;
+  animation: pulse 2s infinite ease-in-out;
 }
 
-.btn-cta:hover {
-  box-shadow: var(--button-shadow);
-  cursor: pointer;
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 @media (min-width: 1024px) {

@@ -66,7 +66,7 @@ export default {
 .feature-item h3 {
   color: var(--neon-blue);
   margin-bottom: 10px;
-  font-size: 1.3em;
+  font-size: 1.7em;
   text-align: center;
 }
 
