@@ -273,6 +273,7 @@ export default {
 .actions {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 
 .btn-role, .btn-delete {
