@@ -61,13 +61,16 @@ export default {
   font-weight: 700;
   color: var(--neon-blue);
   text-shadow: 0 0 5px var(--neon-blue);
-  animation: pulse 2s infinite ease-in-out;
+  animation: flip-3d 10s infinite linear;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+@keyframes flip-3d {
+  0% {
+    transform: perspective(400px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+  }
 }
 
 .username-display {
