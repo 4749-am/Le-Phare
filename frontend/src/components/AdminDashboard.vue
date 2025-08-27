@@ -82,6 +82,7 @@ export default {
             'Authorization': `Bearer ${authStore.token}`
           }
         });
+        console.log('Données Utilisateurs reçues', response.data); // Debug
         users.value = response.data;
       } catch (error) {
         console.error('Erreur lors du chargement des utilisateurs:', error);
@@ -172,7 +173,7 @@ export default {
 .admin-dashboard {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px 20px;
+  padding: 40px 20px 20px;
   color: var(--text-light);
 }
 

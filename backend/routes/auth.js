@@ -45,6 +45,11 @@ router.post('/login', async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: 'Nom d\'utilisateur ou mot de passe incorrect.' });
     }
+
+    // Mise à jour de la dernière connexion
+    user.lastLogin = new Date();
+    
+    await user.save();
     
     // Générer un token JWT
     const token = jwt.sign(
@@ -62,5 +67,6 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
+
 
 module.exports = router;
