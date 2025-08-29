@@ -8,11 +8,7 @@
       <AdminDashboard v-if="authStore.user?.role === 'admin'" />
 
       <!-- Espace Utilisateur Normal -->
-      <div v-else class="welcome-section">
-        <h2>Bienvenue, {{ authStore.user?.username }} !</h2>
-        <p>Vous êtes maintenant connecté à votre espace personnel.</p>
-        <!-- Ajoutez ici le contenu pour les utilisateurs connectés -->
-      </div>
+        <UserDashboard v-else />
     </div>
 
     <!-- Contenu pour utilisateur non connecté -->
@@ -28,12 +24,13 @@
 
 <script>
 import { ref } from 'vue';
-import { useAuthStore } from './stores/auth'; // Assurez-vous que le chemin est correct
+import { useAuthStore } from './stores/auth';
 import Navbar from './components/Navbar.vue';
 import UserSection from './components/UserSection.vue';
 import FeaturesSection from './components/FeaturesSection.vue';
 import SignIn from './components/SignIn.vue';
 import AdminDashboard from './components/AdminDashboard.vue';
+import UserDashboard from './components/UserDashboard.vue';
 
 export default {
   name: 'App',
@@ -43,6 +40,7 @@ export default {
     FeaturesSection,
     SignIn,
     AdminDashboard,
+    UserDashboard,
   },
   setup() {
     const isAuthModalVisible = ref(false);
@@ -89,21 +87,4 @@ body {
   min-height: calc(100vh - 80px);
 }
 
-.welcome-section {
-  text-align: center;
-  padding: 50px 20px;
-  color: var(--text-light);
-}
-
-.welcome-section h2 {
-  color: var(--neon-blue);
-  text-shadow: 0 0 5px var(--neon-blue);
-  margin-bottom: 20px;
-  font-size: 2.5em;
-}
-
-.welcome-section p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
 </style>

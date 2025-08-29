@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth'); 
+const moduleRoutes = require('./routes/modules');
+const progressRoutes = require('./routes/progress');
 
 dotenv.config();
 
@@ -26,6 +28,11 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes); 
+
+
+app.use('/api/modules', moduleRoutes);
+
+app.use('/api/progress', progressRoutes);
 
 
 app.listen(port, () => {
